@@ -177,14 +177,25 @@
     <div class="section-title">Доступные контейнеры</div>
     
     <div class="containers-grid" id="containersList">
-        <!-- Контейнеры будут добавляться через JavaScript -->
+        {% for container in containers %}
+            <div class="container-item">
+                <div class="container-image">
+                    <span style="font-size: 50px;">{{container.image}}</span>
+                    <div class="container-ribbon">NEW</div>
+                </div>
+                <div class="container-info">
+                    <div class="container-name">{{container.title}}</div>
+                    <div class="container-price">{{container.price}}</div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 
     <div class="footer">
         © 2023 ContainerMagic · Все права защищены
     </div>
 
-    <script>
+    <!-- <script>
         // Данные о контейнерах (в реальном приложении будут приходить с сервера)
         const containers = [
             { id: 1, name: "Обычный контейнер", price: "100 ₽", image: "📦", featured: false },
@@ -245,6 +256,6 @@
             // const userBalance = await getUserBalance();
             // document.getElementById('userBalance').textContent = `${userBalance} ₽`;
         });
-    </script>
+    </script> -->
 </body>
 </html>
