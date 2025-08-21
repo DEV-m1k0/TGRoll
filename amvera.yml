@@ -3,10 +3,10 @@ meta:
   toolchain:
     name: pip
     version: 3.11
-  build:
-    requirementsPath: requirements.txt
-    useCache: false
-  run:
-    scriptName: main
-    command: python main.py
-    containerPort: 1234
+build:
+  requirementsPath: requirements.txt
+  useCache: false
+run:
+  scriptName: main
+  command: python main.py
+  containerPort: 1234
