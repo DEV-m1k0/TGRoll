@@ -12,7 +12,7 @@ class Container(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     image: Mapped[str] = mapped_column(String(1))
-    title: Mapped[str] = mapped_column(String(20))
+    title: Mapped[str] = mapped_column(String(50))
     price: Mapped[float] = mapped_column(Float())
 
     def __repr__(self):
