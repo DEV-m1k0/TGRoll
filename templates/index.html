@@ -1,11 +1,250 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Главная страница</title>
+    <style>
+        :root {
+            --primary-color: #40a7e3;
+            --secondary-color: #2ea6d5;
+            --accent-color: #ffd700;
+            --bg-color: #f8f9fa;
+            --card-color: #ffffff;
+            --text-color: #333333;
+            --border-radius: 12px;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 16px;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary-color);
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .balance-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 6px;
+        }
+
+        .balance-amount {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #333;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 24px 0 16px;
+        }
+
+        .containers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .container-item {
+            background-color: var(--card-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+        }
+
+        .container-item:active {
+            transform: scale(0.97);
+        }
+
+        .container-image {
+            width: 100%;
+            height: 120px;
+            background-color: #eaeaea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .container-image img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .container-info {
+            padding: 12px;
+        }
+
+        .container-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+
+        .container-price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .container-ribbon {
+            position: absolute;
+            top: 10px;
+            right: -25px;
+            background-color: var(--accent-color);
+            color: #333;
+            padding: 4px 25px;
+            font-size: 12px;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #888;
+            font-size: 12px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Something</h1>
+    <div class="header">
+        <div class="logo">ContainerMagic</div>
+        <!-- Иконка меню или другие элементы -->
+    </div>
+
+    <div class="balance-card">
+        <div class="balance-label">Ваш баланс</div>
+        <div class="balance-amount" id="userBalance">500 ₽</div>
+        <a href="#" class="btn" id="topUpButton">Пополнить баланс</a>
+    </div>
+
+    <div class="section-title">Доступные контейнеры</div>
+    
+    <div class="containers-grid" id="containersList">
+        <!-- Контейнеры будут добавляться через JavaScript -->
+    </div>
+
+    <div class="footer">
+        © 2023 ContainerMagic · Все права защищены
+    </div>
+
+    <script>
+        // Данные о контейнерах (в реальном приложении будут приходить с сервера)
+        const containers = [
+            { id: 1, name: "Обычный контейнер", price: "100 ₽", image: "📦", featured: false },
+            { id: 2, name: "Редкий контейнер", price: "250 ₽", image: "🎁", featured: true },
+            { id: 3, name: "Эпический контейнер", price: "500 ₽", image: "🧰", featured: false },
+            { id: 4, name: "Легендарный контейнер", price: "1000 ₽", image: "💎", featured: true },
+            { id: 5, name: "Мистический контейнер", price: "750 ₽", image: "🔮", featured: false },
+            { id: 6, name: "Золотой контейнер", price: "1500 ₽", image: "📭", featured: true }
+        ];
+
+        // Функция для отображения контейнеров
+        function renderContainers() {
+            const containersList = document.getElementById('containersList');
+            containersList.innerHTML = '';
+            
+            containers.forEach(container => {
+                const containerElement = document.createElement('div');
+                containerElement.className = 'container-item';
+                containerElement.setAttribute('data-id', container.id);
+                
+                containerElement.innerHTML = `
+                    <div class="container-image">
+                        <span style="font-size: 50px;">${container.image}</span>
+                        ${container.featured ? '<div class="container-ribbon">NEW</div>' : ''}
+                    </div>
+                    <div class="container-info">
+                        <div class="container-name">${container.name}</div>
+                        <div class="container-price">${container.price}</div>
+                    </div>
+                `;
+                
+                containersList.appendChild(containerElement);
+            });
+        }
+
+        // Обработчик для перехода на страницу контейнера
+        document.addEventListener('click', function(e) {
+            const containerItem = e.target.closest('.container-item');
+            if (containerItem) {
+                const containerId = containerItem.getAttribute('data-id');
+                // В реальном приложении здесь будет переход на страницу контейнера
+                alert(`Переход к контейнеру с ID: ${containerId}`);
+            }
+        });
+
+        // Обработчик для кнопки пополнения баланса
+        document.getElementById('topUpButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            // В реальном приложении здесь будет переход на страницу пополнения баланса
+            alert('Переход на страницу пополнения баланса');
+        });
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            renderContainers();
+            
+            // В реальном приложении здесь будет запрос к API для получения баланса пользователя
+            // const userBalance = await getUserBalance();
+            // document.getElementById('userBalance').textContent = `${userBalance} ₽`;
+        });
+    </script>
 </body>
 </html>
