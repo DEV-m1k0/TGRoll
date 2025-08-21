@@ -7,6 +7,6 @@ meta:
     requirementsPath: requirements.txt
     useCache: false
   run:
-    scriptName: main.py
+    scriptName: main
     command: python main.py
     containerPort: 1234
