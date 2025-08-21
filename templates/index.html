@@ -177,18 +177,20 @@
     <div class="section-title">Доступные контейнеры</div>
     
     <div class="containers-grid" id="containersList">
-        {% for container in containers %}
-            <div class="container-item">
-                <div class="container-image">
-                    <span style="font-size: 50px;">{{container.image}}</span>
-                    <div class="container-ribbon">NEW</div>
+        {% if containers %}
+            {% for container in containers %}
+                <div class="container-item">
+                    <div class="container-image">
+                        <span style="font-size: 50px;">{{container.image}}</span>
+                        <div class="container-ribbon">NEW</div>
+                    </div>
+                    <div class="container-info">
+                        <div class="container-name">{{container.title}}</div>
+                        <div class="container-price">{{container.price}}</div>
+                    </div>
                 </div>
-                <div class="container-info">
-                    <div class="container-name">{{container.title}}</div>
-                    <div class="container-price">{{container.price}}</div>
-                </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     </div>
 
     <div class="footer">

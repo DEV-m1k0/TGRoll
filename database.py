@@ -5,7 +5,5 @@ engine = create_engine("sqlite:///casino.sqlite3", echo=True)
 
 
 
-
-
-if __name__ == "__main__":
+def create_db():
     Base.metadata.create_all(engine)

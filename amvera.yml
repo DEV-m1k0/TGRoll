@@ -7,6 +7,6 @@ build:
   requirementsPath: requirements.txt
   useCache: false
 run:
-  scriptName: main.py
-  command: python main.py
+  scriptName: run.py
+  command: python run.py
   containerPort: 1234
