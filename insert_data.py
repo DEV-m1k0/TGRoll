@@ -37,22 +37,33 @@ def insert_test_data(engine):
         
         session.add_all(test_users)
         session.flush()  # Получаем ID пользователей
+
+        # Получаем картинки в виде бинарного файла
+        with open("static/img/bronze-chest.png", 'rb') as file:
+            bronze_chest_img = file.read()
+        with open("static/img/silver-chest.png", 'rb') as file:
+            silver_chest_img = file.read()
+        with open("static/img/golden-chest.png", 'rb') as file:
+            golden_chest_img = file.read()
         
         # Создаем контейнеры
         containers = [
             Container(
+                image=bronze_chest_img,
                 name="Бронзовый сундук",
                 description="Небольшой сундук с умеренными наградами",
                 price=Decimal('5.0'),
                 is_active=True
             ),
             Container(
+                image=silver_chest_img,
                 name="Серебряный сундук",
                 description="Сундук среднего уровня с хорошими наградами",
                 price=Decimal('15.0'),
                 is_active=True
             ),
             Container(
+                image=golden_chest_img,
                 name="Золотой сундук",
                 description="Редкий сундук с щедрыми наградами",
                 price=Decimal('30.0'),

@@ -45,65 +45,26 @@
         <!-- Контейнеры -->
         <h3 class="section-title">Доступные контейнеры</h3>
         <div class="row">
-            <!-- Контейнер 1 -->
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="container-card">
-                    <div class="container-image">
-                        <img src="../static/img/bronze-chest.png" alt="">
-                        <span class="container-price">5 TON</span>
-                    </div>
-                    <div class="container-content">
-                        <h4 class="container-title">Бронзовый сундук</h4>
-                        <p class="container-desc">Небольшой сундук с умеренными наградами</p>
-                        <br>
-                        <button class="btn-open-chest w-100">
-                            <span class="btn-icon">🗝️</span>
-                            <span class="btn-text">Открыть за</span>
-                            <span class="btn-price">5 TON</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Контейнер 2 -->
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="container-card">
-                    <div class="container-image">
-                        <img src="../static/img/silver-chest.png" alt="">
-                        <span class="container-price">15 TON</span>
-                    </div>
-                    <div class="container-content">
-                        <h4 class="container-title">Серебряный сундук</h4>
-                        <p class="container-desc">Сундук среднего уровня с хорошими наградами</p>
-                        <br>
-                        <button class="btn-open-chest w-100">
-                            <span class="btn-icon">🗝️</span>
-                            <span class="btn-text">Открыть за</span>
-                            <span class="btn-price">10 TON</span>
-                        </button>
+            {% for container in containers %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="container-card">
+                        <div class="container-image">
+                            <img src="{{ url_for('get_image', container_id=container.id) }}" alt="Image {{ container.id }}">
+                            <span class="container-price">{{ container.price }} TON</span>
+                        </div>
+                        <div class="container-content">
+                            <h4 class="container-title">{{ container.name }}</h4>
+                            <p class="container-desc">{{ container.description }}</p>
+                            <br>
+                            <button class="btn-open-chest w-100">
+                                <span class="btn-icon">🗝️</span>
+                                <span class="btn-text">Открыть за</span>
+                                <span class="btn-price">{{ container.price }}</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Контейнер 3 -->
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="container-card">
-                    <div class="container-image">
-                        <img src="../static/img/golden-chest.png" alt="">
-                        <span class="container-price">30 TON</span>
-                    </div>
-                    <div class="container-content">
-                        <h4 class="container-title">Золотой сундук</h4>
-                        <p class="container-desc">Редкий сундук с щедрыми наградами</p>
-                        <br>
-                        <button class="btn-open-chest w-100">
-                            <span class="btn-icon">🗝️</span>
-                            <span class="btn-text">Открыть за</span>
-                            <span class="btn-price">15 TON</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 

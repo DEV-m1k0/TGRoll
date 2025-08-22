@@ -191,7 +191,7 @@ body {
     font-weight: 600;
     font-size: 0.9rem;
     position: absolute;
-    bottom: -10px;
+    bottom: -6px;
     right: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transform: rotate(-7.5deg);

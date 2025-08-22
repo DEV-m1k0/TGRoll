@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, BigInteger, String, Numeric, DateTime, ForeignKey, Boolean, Enum
+from sqlalchemy import create_engine, Column, Integer, BigInteger, String, Numeric, DateTime, ForeignKey, Boolean, Enum, LargeBinary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 from datetime import datetime
@@ -36,9 +36,10 @@ class Container(Base):
     __tablename__ = 'containers'
     
     id = Column(Integer, primary_key=True)
+    image = Column(LargeBinary)
     name = Column(String(100), nullable=False)
     description = Column(String(500))
-    price = Column(Numeric(20, 9), nullable=False)  # Стоимость открытия в TON
+    price = Column(Numeric(20, 2), nullable=False)  # Стоимость открытия в TON
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.now())
     
