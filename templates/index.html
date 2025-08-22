@@ -28,14 +28,14 @@
 
         <!-- Баланс пользователя -->
         <div class="balance-card p-4 mb-4 glow">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
+            <div class="row align-items-center">
+                <div class="col-8 col-md-9">
                     <p class="mb-1">Ваш баланс</p>
-                    <h2 class="ton-value mb-0">0.00 TON</h2>
-                    <small class="text-muted">~ $0.00</small>
+                    <h2 class="ton-value mb-0 text-truncate" style="max-width: 90%">1234567.89 TON</h2>
+                    <small class="text-white-50">~ $12345.67</small>
                 </div>
-                <div>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#depositModal">
+                <div class="col-4 col-md-3 text-end">
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#depositModal">
                         <i class="bi bi-plus-circle me-1"></i> Пополнить
                     </button>
                 </div>
@@ -49,7 +49,7 @@
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="container-card">
                     <div class="container-image">
-                        <i class="bi bi-box-fill chest-icon"></i>
+                        <img src="../static/img/bronze-chest.png" alt="">
                         <span class="container-price">5 TON</span>
                     </div>
                     <div class="container-content">
@@ -69,7 +69,7 @@
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="container-card">
                     <div class="container-image">
-                        <i class="bi bi-gem chest-icon"></i>
+                        <img src="../static/img/silver-chest.png" alt="">
                         <span class="container-price">15 TON</span>
                     </div>
                     <div class="container-content">
@@ -89,7 +89,7 @@
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="container-card">
                     <div class="container-image">
-                        <i class="bi bi-stars chest-icon"></i>
+                        <img src="../static/img/golden-chest.png" alt="">
                         <span class="container-price">30 TON</span>
                     </div>
                     <div class="container-content">
@@ -141,10 +141,9 @@
                     <div class="mb-3">
                         <label for="tonAmount" class="form-label">Сумма пополнения (TON)</label>
                         <input type="number" class="form-control" id="tonAmount" placeholder="Введите сумму">
+                        <small class="form-text text-white-50">Минимальная сумма пополнения <span class="fw-bold text-warning text-decoration-underline">1 TON</span></small>
                     </div>
-                    <div class="alert alert-info bg-dark border-info">
-                        <small><i class="bi bi-info-circle me-1"></i> Минимальная сумма пополнения: 1 TON</small>
-                    </div>
+                    <br>
                     <div class="text-center my-3">
                         <div class="pulse">
                             <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ton://wallet?amount=1000000000" alt="TON Wallet QR" class="img-fluid rounded" style="max-width: 150px;">
@@ -153,14 +152,13 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                    <button type="button" class="btn btn-primary">Скопировать адрес</button>
+                    <button type="button" class="btn btn-primary w-100">Скопировать адрес</button>
                 </div>
             </div>
         </div>
     </div>
 
-    
+
     <script src="../static/bootstrap/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="../static/js/index.js"></script>
 </body>

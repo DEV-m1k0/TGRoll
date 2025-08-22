@@ -50,6 +50,46 @@ body {
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
+/* Адаптивные стили для баланса */
+.balance-card .ton-value {
+    font-size: 1.8rem;
+    word-break: break-all;
+    transition: font-size 0.3s ease;
+}
+
+/* Уменьшаем размер шрифта на очень маленьких экранах */
+@media (max-width: 380px) {
+    .balance-card .ton-value {
+        font-size: 1.5rem;
+    }
+    
+    .balance-card .btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Для средних экранов */
+@media (min-width: 768px) {
+    .balance-card .ton-value {
+        font-size: 2rem;
+        word-break: normal;
+    }
+}
+
+/* Для больших экранов */
+@media (min-width: 992px) {
+    .balance-card .ton-value {
+        font-size: 2.2rem;
+    }
+}
+
+/* Убедимся, что кнопка не становится слишком маленькой */
+.balance-card .btn {
+    white-space: nowrap;
+    min-width: max-content;
+}
+
 .btn-primary {
     background: var(--gradient);
     border: none;
@@ -106,6 +146,10 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
+}
+
+.container-image img {
+    width: 75vw;
 }
 
 .container-image::before {
@@ -237,6 +281,17 @@ body {
     color: var(--text-color);
 }
 
+#tonAmount::placeholder {
+  color: #ffffff87; 
+  opacity: 1;     /* Полная непрозрачность (по умолчанию в некоторых браузерах placeholders полупрозрачны) */
+}
+
+/* Для старых браузеров */
+#tonAmount::-webkit-input-placeholder { color: #ffffff87;  } /* WebKit */
+#tonAmount::-moz-placeholder { color: #ffffff87;  } /* Firefox 19+ */
+#tonAmount:-ms-input-placeholder { color: #ffffff87;  } /* IE 10-11 */
+#tonAmount::-ms-input-placeholder { color: #ffffff87;  } /* Edge */
+
 /* Анимации */
 @keyframes pulse {
     0% { transform: scale(1); }
@@ -257,11 +312,10 @@ body {
 .glow {
     animation: glow 3s infinite;
 }
-
 /* Адаптивность */
 @media (max-width: 576px) {
     .ton-value {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
     }
     
     .container-image {
