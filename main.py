@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from models import Container
-from database import engine
+from database import engine, create_db
 from sqlalchemy.orm import Session
 
 app = Flask(__name__, template_folder="./templates")
@@ -28,4 +28,5 @@ def run_app():
 
 
 if __name__ == "__main__":
+    # create_db()
     run_app()

@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from models import Base
+from insert_data import insert_test_data
 
 engine = create_engine("sqlite:///casino.sqlite3", echo=True)
 
@@ -12,3 +13,4 @@ engine = create_engine("sqlite:///casino.sqlite3", echo=True)
 
 def create_db():
     Base.metadata.create_all(engine)
+    insert_test_data(engine)

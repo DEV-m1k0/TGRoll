@@ -1,50 +1,163 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/bootstrap/node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../static/css/index.css">
-    <title>Главная страница</title>
+    <title>Document</title>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">ContainerMagic</div>
-        <!-- Иконка меню или другие элементы -->
-    </div>
+        <!-- Главный контейнер -->
+    <div class="container py-4">
+        <!-- Заголовок -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="navbar-brand mb-0">Crypto Chests</h1>
+            <div class="dropdown">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle me-1"></i> User123
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-wallet2 me-2"></i>Кошелек</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Настройки</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i>Выйти</a></li>
+                </ul>
+            </div>
+        </div>
 
-    <div class="balance-card">
-        <div class="balance-label">Ваш баланс</div>
-        <div class="balance-amount" id="userBalance">500 ₽</div>
-        <a href="#" class="btn" id="topUpButton">Пополнить баланс</a>
-    </div>
+        <!-- Баланс пользователя -->
+        <div class="balance-card p-4 mb-4 glow">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p class="mb-1">Ваш баланс</p>
+                    <h2 class="ton-value mb-0">0.00 TON</h2>
+                    <small class="text-muted">~ $0.00</small>
+                </div>
+                <div>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#depositModal">
+                        <i class="bi bi-plus-circle me-1"></i> Пополнить
+                    </button>
+                </div>
+            </div>
+        </div>
 
-    <div class="section-title">Доступные контейнеры</div>
-    
-    <div class="containers-grid" id="containersList">
-        {% if containers %}
-            {% for container in containers %}
-                <a href="/containers?container_id={{container.id}}" class="text-black">
-                    <div class="container-item">
-                        <div class="container-image">
-                            <span style="font-size: 50px;">{{container.image}}</span>
-                            <div class="container-ribbon">NEW</div>
-                        </div>
-                        <div class="container-info">
-                            <div class="container-name">{{container.title}}</div>
-                            <div class="container-price">{{container.price}}</div>
-                        </div>
+        <!-- Контейнеры -->
+        <h3 class="section-title">Доступные контейнеры</h3>
+        <div class="row">
+            <!-- Контейнер 1 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="container-card">
+                    <div class="container-image">
+                        <i class="bi bi-box-fill chest-icon"></i>
+                        <span class="container-price">5 TON</span>
                     </div>
-                </a>
-            {% endfor %}
-        {% endif %}
+                    <div class="container-content">
+                        <h4 class="container-title">Бронзовый сундук</h4>
+                        <p class="container-desc">Небольшой сундук с умеренными наградами</p>
+                        <div class="reward-preview">
+                            <span class="reward-item">2 TON</span>
+                            <span class="reward-item">5 TON</span>
+                            <span class="reward-item">10 TON</span>
+                        </div>
+                        <button class="btn btn-outline-light w-100">Открыть за 5 TON</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Контейнер 2 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="container-card">
+                    <div class="container-image">
+                        <i class="bi bi-gem chest-icon"></i>
+                        <span class="container-price">15 TON</span>
+                    </div>
+                    <div class="container-content">
+                        <h4 class="container-title">Серебряный сундук</h4>
+                        <p class="container-desc">Сундук среднего уровня с хорошими наградами</p>
+                        <div class="reward-preview">
+                            <span class="reward-item">5 TON</span>
+                            <span class="reward-item">15 TON</span>
+                            <span class="reward-item">30 TON</span>
+                        </div>
+                        <button class="btn btn-outline-light w-100">Открыть за 15 TON</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Контейнер 3 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="container-card">
+                    <div class="container-image">
+                        <i class="bi bi-stars chest-icon"></i>
+                        <span class="container-price">30 TON</span>
+                    </div>
+                    <div class="container-content">
+                        <h4 class="container-title">Золотой сундук</h4>
+                        <p class="container-desc">Редкий сундук с щедрыми наградами</p>
+                        <div class="reward-preview">
+                            <span class="reward-item">10 TON</span>
+                            <span class="reward-item">35 TON</span>
+                            <span class="reward-item">75 TON</span>
+                        </div>
+                        <button class="btn btn-outline-light w-100">Открыть за 30 TON</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="footer">
-        © 2023 ContainerMagic · Все права защищены
+    <!-- Нижняя навигационная панель -->
+    <nav class="bottom-nav">
+        <div class="d-flex justify-content-around">
+            <a href="#" class="nav-item active">
+                <i class="bi bi-house-door-fill nav-icon"></i>
+                <span class="nav-label">Главная</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="bi bi-person nav-icon"></i>
+                <span class="nav-label">Профиль</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="bi bi-clock-history nav-icon"></i>
+                <span class="nav-label">История</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="bi bi-trophy nav-icon"></i>
+                <span class="nav-label">Топ</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Модальное окно пополнения баланса -->
+    <div class="modal fade" id="depositModal" tabindex="-1" aria-labelledby="depositModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="depositModalLabel">Пополнение баланса TON</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="tonAmount" class="form-label">Сумма пополнения (TON)</label>
+                        <input type="number" class="form-control" id="tonAmount" placeholder="Введите сумму">
+                    </div>
+                    <div class="alert alert-info bg-dark border-info">
+                        <small><i class="bi bi-info-circle me-1"></i> Минимальная сумма пополнения: 1 TON</small>
+                    </div>
+                    <div class="text-center my-3">
+                        <div class="pulse">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ton://wallet?amount=1000000000" alt="TON Wallet QR" class="img-fluid rounded" style="max-width: 150px;">
+                        </div>
+                        <p class="mt-2 small">Отсканируйте QR-код для пополнения</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary">Скопировать адрес</button>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    <script src="../static/bootstrap/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>

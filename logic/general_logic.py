@@ -90,3 +90,8 @@ class Transaction(Base):
     
     # Связи
     user = relationship("User", back_populates="transactions")
+
+# Инициализация базы данных
+engine = create_engine('sqlite:///crypto_bot.db')  # Для продакшена используйте PostgreSQL
+Base.metadata.create_all(engine)
+Session = sessionmaker(bind=engine)
