@@ -57,10 +57,23 @@ body {
     transition: font-size 0.3s ease;
 }
 
+/* Уменьшаем размер шрифта на маленьких экранах */
+@media (max-width: 477px) {
+    .balance-card .ton-value {
+        font-size: 1.35rem;
+        word-break: break-all;
+        transition: font-size 0.3s ease;
+    }
+    .balance-card .btn {
+        padding: 8px 8px;
+        font-size: 0.9rem;
+    }
+}
+
 /* Уменьшаем размер шрифта на очень маленьких экранах */
 @media (max-width: 380px) {
     .balance-card .ton-value {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
     
     .balance-card .btn {
@@ -249,7 +262,7 @@ body {
 }
 
 .nav-label {
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 .modal-content {
