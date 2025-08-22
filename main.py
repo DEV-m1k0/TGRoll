@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from models import Container
 from database import engine
 from sqlalchemy.orm import Session
@@ -14,6 +14,13 @@ def index():
         containers = []
 
     return render_template("index.html", containers=containers)
+
+
+@app.route("/containers")
+def container_detail():
+    container_id = request.args.get('container_id')
+    print(container_id)
+    return render_template("index.html")
 
 
 def run_app():
