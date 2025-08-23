@@ -437,3 +437,32 @@ body {
         font-size: 1rem;
     }
 }
+.table-dark {
+    background: var(--dark-purple);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-dark th {
+    background: var(--medium-purple);
+    border: none;
+}
+
+.table-dark td {
+    border-color: var(--light-purple);
+}
+.container-inactive {
+    opacity: 0.6;
+    filter: grayscale(100%);
+    cursor: not-allowed;
+}
+
+.container-inactive .btn-open-chest {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+.container-inactive .btn-open-chest:hover {
+    transform: none;
+    box-shadow: none;
+}

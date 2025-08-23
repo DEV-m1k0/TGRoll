@@ -28,46 +28,99 @@
 
         <!-- Баланс пользователя -->
         <div class="balance-card p-4 mb-4 glow">
-            <div class="row align-items-center">
-                <div class="col-8 col-md-9">
-                    <p class="mb-1">Ваш баланс</p>
-                    <h2 class="ton-value mb-0 text-truncate" style="max-width: 90%">1234567.89 TON</h2>
-                    <small class="text-white-50">~ $12345.67</small>
-                </div>
-                <div class="col-4 col-md-3 text-end">
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#depositModal">
-                        <i class="bi bi-plus-circle me-1"></i> Пополнить
-                    </button>
-                </div>
-            </div>
+    <div class="row align-items-center">
+        <div class="col-8 col-md-9">
+    <p class="mb-1">Ваш баланс</p>
+    <h2 class="ton-value mb-0 text-truncate" style="max-width: 90%">0 TON</h2>
+    <small class="usd-value text-white-50">~ $0.00</small> <!-- Изменим класс на usd-value -->
+</div>
+        <div class="col-4 col-md-3 text-end">
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#depositModal">
+                <i class="bi bi-plus-circle me-1"></i> Пополнить
+            </button>
         </div>
+    </div>
+</div>
 
         <!-- Контейнеры -->
         <h3 class="section-title">Доступные контейнеры</h3>
         <div class="row">
             {% for container in containers %}
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="container-card">
-                        <div class="container-image">
-                            <img src="{{ url_for('get_image', container_id=container.id) }}" alt="Image {{ container.id }}">
-                            <span class="container-price">{{ container.price }} TON</span>
-                        </div>
-                        <div class="container-content">
-                            <h4 class="container-title">{{ container.name }}</h4>
-                            <p class="container-desc">{{ container.description }}</p>
-                            <br>
-                            <button class="btn-open-chest w-100">
-                                <span class="btn-icon">🗝️</span>
-                                <span class="btn-text">Открыть за</span>
-                                <span class="btn-price">{{ container.price }}</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="container-card {% if not container.is_active %}container-inactive{% endif %}" data-container-id="{{ container.id }}">
+            <div class="container-image">
+                <img src="{{ url_for('get_image', container_id=container.id) }}" alt="Image {{ container.id }}">
+                <span class="container-price">{{ container.price }} TON</span>
+            </div>
+            <div class="container-content">
+                <h4 class="container-title">{{ container.name }}</h4>
+                <p class="container-desc">{{ container.description }}</p>
+                <br>
+                {% if container.is_active %}
+                    <button class="btn-open-chest w-100" data-container-id="{{ container.id }}">
+                        <span class="btn-icon">🗝️</span>
+                        <span class="btn-text">Открыть за</span>
+                        <span class="btn-price">{{ container.price }} TON</span>
+                    </button>
+                {% else %}
+                    <button class="btn-open-chest w-100" disabled>
+                        <span class="btn-text">Недоступно</span>
+                    </button>
+                {% endif %}
+            </div>
         </div>
     </div>
+{% endfor %}
+        </div>
+    </div>
+    <!-- Модальное окно с лут-таблицей -->
+<div class="modal fade" id="lootModal" tabindex="-1" aria-labelledby="lootModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lootModalLabel">Награды в сундуке</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="lootTableContainer">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>Награда (TON)</th>
+                                <th>Вероятность</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lootTableBody">
+                            <!-- Данные будут заполнены через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Модальное окно с результатом открытия -->
+<div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="resultModalLabel">Результат открытия</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4 id="rewardAmount" class="text-warning">0 TON</h4>
+                    <p>Вероятность выпадения: <span id="rewardProbability">0%</span></p>
+                    <p>Новый баланс: <span id="newBalance">0 TON</span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Отлично!</button>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- Нижняя навигационная панель -->
     <nav class="bottom-nav">
         <div class="d-flex justify-content-around">
@@ -115,7 +168,7 @@
     </div>
 
 
-    <!-- <script src="../static/js/index.js"></script> -->
+    <script src="../static/js/index.js"></script>
     <script src="../static/bootstrap/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script>
         form = document.getElementById("topUpBalanceForm")
