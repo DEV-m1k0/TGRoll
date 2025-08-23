@@ -98,29 +98,37 @@
                     <h5 class="modal-title" id="depositModalLabel">Пополнение баланса TON</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="tonAmount" class="form-label">Сумма пополнения (TON)</label>
-                        <input type="number" class="form-control" id="tonAmount" placeholder="Введите сумму">
-                        <small class="form-text text-white-50">Минимальная сумма пополнения <span class="fw-bold text-warning text-decoration-underline">1 TON</span></small>
-                    </div>
-                    <br>
-                    <div class="text-center my-3">
-                        <div class="pulse">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ton://wallet?amount=1000000000" alt="TON Wallet QR" class="img-fluid rounded" style="max-width: 150px;">
+                <form id="topUpBalanceForm" action="" method="post">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="tonAmount" class="form-label">Сумма пополнения (TON)</label>
+                            <input type="text" class="form-control" id="tonAmount" placeholder="Введите сумму" name="amount">
+                            <small class="form-text text-white-50">Минимальная сумма пополнения <span class="fw-bold text-warning text-decoration-underline">1 TON</span></small>
                         </div>
-                        <p class="mt-2 small">Отсканируйте QR-код для пополнения</p>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary w-100">Скопировать адрес</button>
-                </div>
+                    <div class="modal-footer">
+                        <button id="btnTopUpBalance" type="submit" class="btn btn-primary w-100 disabled">Пополнить баланс</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
 
+    <!-- <script src="../static/js/index.js"></script> -->
     <script src="../static/bootstrap/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="../static/js/index.js"></script>
+    <script>
+        form = document.getElementById("topUpBalanceForm")
+        priceInput = document.getElementById("tonAmount")
+        btn = document.getElementById("btnTopUpBalance")
+
+        priceInput.addEventListener("keyup", (arg) => {
+            if (parseFloat(priceInput.value) >= 0.2) {
+                btn.classList.remove("disabled")
+            } else {
+                btn.classList.add("disabled")
+            }
+        })
+    </script>
 </body>
 </html>

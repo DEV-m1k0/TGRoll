@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from models import Base
 from insert_data import insert_test_data
 
-engine = create_engine("sqlite:///casino.sqlite3", echo=True)
+engine = create_engine("sqlite:///casino.sqlite3", echo=False)
 
 # engine = create_engine(
 #     "postgresql+psycopg2://postgres:postgres1234@127.0.0.1:5432/tgroll", echo=True
